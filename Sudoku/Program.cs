@@ -79,8 +79,6 @@ for (int i = 0; i < size; i++)
 {
     for (int j = 0; j < size; j++)
     {
-        model.Add(grid[i][j] > 0);
-
         if (initialGrid[i][j] != 0)
         {
             model.Add(grid[i][j] == initialGrid[i][j]);
