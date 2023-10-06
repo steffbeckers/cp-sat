@@ -3,7 +3,7 @@
 CpModel model = new CpModel();
 
 int size = 9; // Size of the Sudoku grid (9x9 in this case)
-int sqrtSize = 3; // Size of a subgrid (3x3 in this case)
+int sqrtSize = (int)Math.Sqrt(size); // Size of a subgrid (3x3 in this case)
 // Create a 2D array of integer variables to represent the Sudoku grid
 IntVar[][] grid = new IntVar[size][];
 
