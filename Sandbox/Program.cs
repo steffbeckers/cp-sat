@@ -2,14 +2,17 @@
 
 CpModel model = new CpModel();
 
-int numberCount = 10;
+int numberOfValues = 100;
 
-IntVar x = model.NewIntVar(0, numberCount, "x");
-IntVar y = model.NewIntVar(0, numberCount, "y");
+IntVar x = model.NewIntVar(0, numberOfValues - 1, "x");
+IntVar y = model.NewIntVar(0, numberOfValues - 1, "y");
+IntVar z = model.NewIntVar(0, numberOfValues - 1, "z");
 
-model.AddAllDifferent(new IntVar[] { x, y });
-model.Add(x == y * 2);
-model.Add(x > 5);
+model.Add(x > y);
+model.Add(x == z - 50);
+model.AddAllDifferent(new IntVar[] { x, y, z });
+
+model.Maximize(x);
 
 CpSolver solver = new CpSolver();
 
@@ -22,6 +25,7 @@ if (status == CpSolverStatus.Feasible || status == CpSolverStatus.Optimal)
 
 	Console.WriteLine($"x: {solver.Value(x)}");
 	Console.WriteLine($"y: {solver.Value(y)}");
+	Console.WriteLine($"z: {solver.Value(z)}");
 }
 else
 {
